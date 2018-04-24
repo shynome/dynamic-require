@@ -1,7 +1,0 @@
-const crypto = require('crypto')
-const fs  = require('fs')
-const path = require('path')
-const file = path.join(__dirname,'./index.js')
-console.time('a')
-crypto.createHash('md5').update(fs.readFileSync(file)).digest('base64')
-console.timeEnd('a')
