@@ -1,15 +1,30 @@
 {
-  "name": "",
+  "name": "@shynome/dynamic-require",
   "version": "0.0.0",
-  "description": "",
+  "description": "dynamic require js file which is frequent changes",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "test": "mocha",
+    "preversion": "npm t",
+    "postversion": "git push --tags"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^9.6.0"
-  }
+    "@types/node": "^9.6.0",
+    "mocha": "^5.1.1"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shynome/dynamic-require.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shynome/dynamic-require/issues"
+  },
+  "homepage": "https://github.com/shynome/dynamic-require#readme"
 }
