@@ -1,6 +1,6 @@
 {
   "name": "@shynome/dynamic-require",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "dynamic require js file which is frequent changes",
   "main": "index.js",
   "scripts": {
