@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
     "preversion": "npm t",
-    "postversion": "git push --tags"
+    "postversion": "git push --follow-tags"
   },
   "keywords": [],
   "author": "",
