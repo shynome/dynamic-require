@@ -5,7 +5,7 @@ const fs = require('fs')
 const dynamicRequireFilename = './.dynamicRequire.js'
 const dynamicRequireFilepath = path.join(__dirname,dynamicRequireFilename)
 
-describe('main',()=>{
+describe('single-file-require',()=>{
 
   let dynamicRequire = require('../')(require)
 
