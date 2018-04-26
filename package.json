@@ -2,7 +2,7 @@
   "name": "@shynome/dynamic-require",
   "version": "0.0.2",
   "description": "dynamic require js file which is frequent changes",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "mocha",
     "preversion": "npm t",
