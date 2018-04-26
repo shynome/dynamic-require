@@ -1,36 +1,53 @@
-const mainRequire = require
+const mainRequire = exports.mainRequire = require
 const mainRequireChildrenCache = /**@type {any[]} */(mainRequire.cache[__filename].children)
-const fs = require('fs')
-const crypto = require('crypto')
+
 /**
  * @param {NodeRequire} require 
  * @returns {(module:string)=>any}
  */
-module.exports =  (require)=> /production/i.test(process.env.NODE_ENV) ? require : 
+exports.bind =  (require)=> /production/i.test(process.env.NODE_ENV) ? require : 
 (module)=>{
   
   let id = require.resolve(module)
   let res = mainRequire(id)
   
-  let now_hash = crypto.createHash('md5').update(fs.readFileSync(id)).digest('base64')
-  let last_hash = mainRequire.cache[id].last_hash
+  if( exports.isChanged(id) ){
 
-  // frist load set ctimeMs
-  if(typeof last_hash === 'undefined'){
-    mainRequire.cache[id].last_hash = now_hash
-    return res
-  }
-
-  // reload module
-  if( now_hash !== last_hash){
-
-    mainRequireChildrenCache.splice( mainRequireChildrenCache.indexOf(mainRequire.cache[id]), 1 )
-    delete mainRequire.cache[id]
-    
+    exports.clearCache(id)
     res = mainRequire(id)
-    mainRequire.cache[id].last_hash = now_hash
 
   }
 
   return res
+}
+
+/**
+ * 获取模块依赖的文件
+ * @param {string} id 
+ * @param {string[]} added_deps 
+ * @returns {string[]}
+ */
+exports.getModuleDeps = (id,added_deps=[])=>{
+  let deps = [id]
+  added_deps.push(...deps)
+  let children = /**@type {{id:string}[]}*/(mainRequire.cache[id].children).map(a=>a.id)
+  if( children.length ){
+    
+  }else{
+    
+  }
+  return []
+}
+
+exports.isChanged = require('./isChanged').isChanged
+
+/**
+ * clear require cache
+ * @param {string} id 
+ */
+exports.clearCache = (id)=>{
+  /**@type {any[]}*/(mainRequire.cache[id].deps).forEach(id=>{
+    mainRequireChildrenCache.splice(mainRequireChildrenCache.indexOf(mainRequire.cache[id]),1)
+    delete mainRequire.cache[id]
+  })
 }

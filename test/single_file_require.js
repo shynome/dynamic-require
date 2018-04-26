@@ -7,7 +7,7 @@ const dynamicRequireFilepath = path.join(__dirname,dynamicRequireFilename)
 
 describe('single-file-require',()=>{
 
-  let dynamicRequire = require('../')(require)
+  let dynamicRequire = require('../').bind(require)
 
 
   for(let i=4;i--;i>0){
