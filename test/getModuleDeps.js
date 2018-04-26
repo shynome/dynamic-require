@@ -20,8 +20,9 @@ describe('getModuleDeps',()=>{
   it('loop require',()=>{
     require(file[0])
     let modules = getModuleDeps(require.resolve(file[0]))
-    assert(
-      modules.length === 2,
+    assert.deepStrictEqual(
+      2,
+      modules.length,
       `module is ${JSON.stringify(modules)}`
     )
   })
